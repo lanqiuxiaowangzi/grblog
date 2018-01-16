@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block main %}
+    <section class="archives-wrap">
+        {% regroup posts by created.year as year_group %}
+        {% for year in year_group %}
+            <div class="archive-year-wrap">
+                 <span class="archive-year">{{ year.grouper }}</span>
+            </div>
+            <div class="archives">
+            {% for post in year.list %}
+                <article class="archive-article archive-type-post">
+              <div class="archive-article-inner">
+                <header class="archive-article-header">
+                  <a href="#" class="archive-article-date">
+              <time>{{ post.created.year }}年{{ post.created.month }}月{{ post.created.day }}日</time>
+            </a>
+                <h1 itemprop="name">
+                  <a class="archive-article-title" href="http://127.0.0.1:8000/boke/details/{{ post.id }}">{{ post.title }}</a>
+                </h1>
+                </header>
+              </div>
+            </article>
+            {% endfor %}
+             </div>
+        {% endfor %}
+
+
+
+
+    </section>
+{% endblock %}
